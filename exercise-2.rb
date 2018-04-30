@@ -1,14 +1,36 @@
 def check_syntax(str)
+  open_html = "<html>"
+  close_html = "</html>"
+
   openables = {
     "(" => ")",
     "[" => "]",
     "{" => "}",
-    "<html>" => "</html>"
   }
   open = []
+
   opening_chars = openables.keys
   closing_chars = openables.values
+  
+#solution for html
+    html = []
 
+    if str.include?(open_html) || str.include?(close_html)
+        p "html detected"
+      if str.include?(open_html)
+        html << open_html
+      elsif str.include?(close_html)
+        html << close_html
+        if html.include?(open_html) && html.include?(close_html)
+          html.pop
+
+    else 
+      p 'error'
+        end
+      end
+      return html
+    end 
+##############
   str.each_char do |char|
 
     if opening_chars.include?(char) # opening bracket
@@ -51,9 +73,15 @@ end
 
 # puts check_syntax("<html> (this)[] is some text</html>")
 # puts check_syntax("<html> (this)] is some text</html>")
-puts check_syntax("<html> [(this] is some text</html>")
-puts check_syntax("<html> [this][ is some text</html")
-puts check_syntax("<html> [this] is some text</html")
+# puts check_syntax("<html> [(this] is some text</html>")
+# puts check_syntax("<html> [this][ is some text</html")
+
+
+# puts check_syntax("<html> [this] is some text</html")
+
+puts check_syntax("<html>foo</html")
+
+puts check_syntax("<htmlfoo</html>")
 # puts check_syntax("[(this] is some text")
 
 
